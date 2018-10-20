@@ -14,4 +14,4 @@ HOT FIX MAKER v 1.0
 JDK version: 8
 Executable jar
 Interface:
-The tool uses JavaFX as main for UI.
+The tool uses JavaFX 2.0 as main for UI.
