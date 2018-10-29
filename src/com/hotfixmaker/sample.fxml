@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.hotfixmaker.Controller" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ListView fx:id="filesList" layoutX="9.0" layoutY="138.0" prefHeight="232.0" prefWidth="404.0" />
         <Button fx:id="plusButton" layoutX="338.0" layoutY="375.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="33.0" text="+" />
@@ -42,7 +42,7 @@
                 </VBox>
                 <VBox prefHeight="31.0" prefWidth="69.0">
                     <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" text="Browse" textAlignment="RIGHT" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="browseButton" onAction="#onClickBrowse" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" text="Browse" textAlignment="RIGHT" VBox.vgrow="ALWAYS" />
                     </children>
                     <opaqueInsets>
                         <Insets left="50.0" />
