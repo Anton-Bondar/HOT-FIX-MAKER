@@ -2,6 +2,7 @@ package com.hotfixmaker.model.control;
 
 import com.hotfixmaker.model.SelectedFile;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.Tooltip;
 
 public class FileCell extends ListCell<SelectedFile> {
 
@@ -10,11 +11,10 @@ public class FileCell extends ListCell<SelectedFile> {
         super.updateItem(item, empty);
         if (item != null) {
             setText(item.getName());
+            setTooltip(new Tooltip(item.getPath()));
         } else {
             setText("");
+            setTooltip(null);
         }
-        setGraphic(null);
     }
-
-
 }
