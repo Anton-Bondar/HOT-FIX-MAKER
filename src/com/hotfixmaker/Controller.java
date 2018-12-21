@@ -2,6 +2,7 @@ package com.hotfixmaker;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.ResourceBundle;
 import com.hotfixmaker.factory.FileCellFactory;
@@ -11,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -30,11 +30,14 @@ public class Controller implements Initializable {
     private TextField targetFolderField;
 
     @FXML
+    private TextField defaultFolderField;
+
+    @FXML
     private ListView<SelectedFile> filesList;
 
     @FXML
     private TextField nameField;
-    
+
     @FXML
     private void onClickBrowse() {
         final DirectoryChooser targetFolderChooser = new DirectoryChooser();
@@ -66,11 +69,29 @@ public class Controller implements Initializable {
 
     @FXML
     private void onClickOk() {
-        String name = nameField.getText();
-        if(name.isEmpty()) {
+        String targetFolderPath = targetFolderField.getText();
+        String defaultFolderPath = defaultFolderField.getText();
+        //emptyValidation();
+        if (!defaultFolderPath.isEmpty()) {
+            createDefaultFolder(targetFolderPath);
+        }
+    }
+
+    private void createDefaultFolder(String targetFolderPath) {
+        System.out.println("targetFolderPath "+targetFolderPath);
+        boolean isCreated = new File(targetFolderPath).mkdirs();
+        if (!isCreated) {
+            createErrorAlert("The default folders path is incorrect").showAndWait();
+        }
+    }
+
+    private void emptyValidation() {
+        if (nameField.getText().isEmpty()) {
             createErrorAlert("Name value must be specified").showAndWait();
         }
-
+        if (selectedFiles.isEmpty()) {
+            createErrorAlert("No files selected").showAndWait();
+        }
     }
 
     @Override
