@@ -73,13 +73,14 @@ public class Controller implements Initializable {
         String defaultFolderPath = defaultFolderField.getText();
         //emptyValidation();
         if (!defaultFolderPath.isEmpty()) {
-            createDefaultFolder(targetFolderPath);
+            createDefaultFolder(targetFolderPath, defaultFolderPath);
         }
     }
 
-    private void createDefaultFolder(String targetFolderPath) {
-        System.out.println("targetFolderPath "+targetFolderPath);
-        boolean isCreated = new File(targetFolderPath).mkdirs();
+    private void createDefaultFolder(String targetFolderPath, String defaultFolderPath) {
+        String path = targetFolderPath + defaultFolderPath;
+        System.out.println("Path "+path);
+        boolean isCreated = new File(targetFolderPath).getParentFile().mkdirs();
         if (!isCreated) {
             createErrorAlert("The default folders path is incorrect").showAndWait();
         }
