@@ -21,6 +21,8 @@ import javafx.stage.Stage;
 
 public class Controller implements Initializable {
 
+    private static final String DEFAULT_FOLDER = "\\applications\\NetCracker\\APP-INF";
+    private static final String DEF_FOLDER_REGEXP = "^(\\\\)([a-zA-Z_\\\\\\-\\s0-9!+=&@#$%^&()\\[\\]{}]+)";
     private ObservableList<SelectedFile> selectedFiles;
 
     @FXML
@@ -72,17 +74,24 @@ public class Controller implements Initializable {
         String targetFolderPath = targetFolderField.getText();
         String defaultFolderPath = defaultFolderField.getText();
         //emptyValidation();
+        defaultFolderValidation(defaultFolderPath);
         if (!defaultFolderPath.isEmpty()) {
             createDefaultFolder(targetFolderPath, defaultFolderPath);
         }
     }
 
+    private void defaultFolderValidation(String defaultFolderPath) {
+        if(!defaultFolderPath.matches(DEF_FOLDER_REGEXP)) {
+           createErrorAlert("The def. folder should has pattern /-||-/-||-/ and contains only allowed for folder name characters").showAndWait();
+        }
+    }
+
     private void createDefaultFolder(String targetFolderPath, String defaultFolderPath) {
         String path = targetFolderPath + defaultFolderPath;
-        System.out.println("Path "+path);
-        boolean isCreated = new File(targetFolderPath).getParentFile().mkdirs();
+        boolean isCreated = new File(path).mkdirs();
+
         if (!isCreated) {
-            createErrorAlert("The default folders path is incorrect").showAndWait();
+            createErrorAlert("The default folder has already created").showAndWait();
         }
     }
 
@@ -99,6 +108,8 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         filesList.setCellFactory(new FileCellFactory());
         selectedFiles = FXCollections.observableArrayList();
+        defaultFolderField.setText(DEFAULT_FOLDER);
+        targetFolderField.setDisable(true);
     }
 
     private Alert createErrorAlert(String message) {
