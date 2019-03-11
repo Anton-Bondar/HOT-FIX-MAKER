@@ -1,4 +1,4 @@
-package com.hotfixmaker.factory;
+package com.hotfixmaker.model.factory;
 
 import com.hotfixmaker.model.SelectedFile;
 import com.hotfixmaker.model.control.FileCell;

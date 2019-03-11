@@ -10,10 +10,13 @@ public class SelectedFile {
 
     private File file;
 
+    private String pathToCreation;
+
     public SelectedFile(File file) {
         this.file = file;
         this.name = file.getName();
         this.path = file.getAbsolutePath();
+        this.pathToCreation = new File(file.getParent()).getPath().split("classes")[1];
     }
 
     public String getPath() {
@@ -38,5 +41,13 @@ public class SelectedFile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPathToCreation() {
+        return pathToCreation;
+    }
+
+    public void setPathToCreation(String pathToCreation) {
+        this.pathToCreation = pathToCreation;
     }
 }

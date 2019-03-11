@@ -55,7 +55,7 @@
         </HBox>
         <HBox layoutX="12.0" layoutY="78.0" prefHeight="18.0" prefWidth="319.0">
             <children>
-                <Label prefHeight="18.0" prefWidth="189.0" text="Defult server app. folder "/>
+                <Label prefHeight="18.0" prefWidth="189.0" text="Default server app. folder "/>
             </children>
         </HBox>
         <HBox layoutX="9.0" layoutY="105.0" prefHeight="31.0" prefWidth="404.0">
