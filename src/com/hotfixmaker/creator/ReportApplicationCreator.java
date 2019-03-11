@@ -1,7 +1,7 @@
 package com.hotfixmaker.creator;
 
 import static com.hotfixmaker.model.message.HFMMessage.HFM1;
-import static com.hotfixmaker.model.message.HFMMessage.HFM7;
+import static com.hotfixmaker.model.message.HFMMessage.HFM8;
 
 import javafx.scene.control.Alert;
 
@@ -13,7 +13,7 @@ public class ReportApplicationCreator {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         if (archive.exists()) {
-            alert.setContentText(HFM7.get());
+            alert.setContentText(HFM8.get());
         } else {
             alert.setContentText(HFM1.get());
         }

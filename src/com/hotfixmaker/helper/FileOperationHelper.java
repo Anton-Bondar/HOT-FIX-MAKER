@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
 
-import static com.hotfixmaker.model.message.HFMMessage.HFM6;
+import static com.hotfixmaker.model.message.HFMMessage.HFM7;
 
 public class FileOperationHelper {
 
@@ -31,7 +31,7 @@ public class FileOperationHelper {
     public static void removeOldZipArchive(File archiveFile) throws IOException {
         if (Files.exists(archiveFile.toPath())) {
             Files.delete(archiveFile.toPath());
-            AlertHelper.create(HFM6.get(), Alert.AlertType.WARNING, "Warning").show();
+            AlertHelper.create(HFM7.get(), Alert.AlertType.WARNING, "Warning").show();
         }
     }
 

@@ -27,9 +27,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import static com.hotfixmaker.model.message.HFMMessage.HFM1;
-import static com.hotfixmaker.model.message.HFMMessage.HFM2;
+import static com.hotfixmaker.model.message.HFMMessage.*;
 
 public class Controller implements Initializable {
 
@@ -114,15 +115,23 @@ public class Controller implements Initializable {
             String lastLocationPath = selectedFiles.get(selectedFiles.size() - 1).getFile().getParent();
             fileChooser.setInitialDirectory(new File(lastLocationPath));
         }
+        List<File> prevSelectedFiles = selectedFiles.stream().map(SelectedFile::getFile).collect(Collectors.toList());
         final Stage stage = (Stage) mainPane.getScene().getWindow();
         List<File> files = fileChooser.showOpenMultipleDialog(stage);
         if (files != null && !files.isEmpty()) {
-            for (File file : files) {
-                if (file.getPath().split("classes").length == 2) {
-                    selectedFiles.add(new SelectedFile(file));
-                } else {
-                    AlertHelper.create(HFM2.get(), Alert.AlertType.ERROR, VALIDATION_ERROR).showAndWait();
+            try {
+                for (File file : files) {
+                    if (prevSelectedFiles.contains(file)) {
+                        throw new HFMValidationException(HFM6.get());
+                    }
+                    if (file.getPath().split("classes").length == 2) {
+                        selectedFiles.add(new SelectedFile(file));
+                    } else {
+                        throw new HFMValidationException(HFM2.get());
+                    }
                 }
+            } catch (HFMValidationException e) {
+                AlertHelper.create(e.getMessage(), Alert.AlertType.ERROR, VALIDATION_ERROR).showAndWait();
             }
             filesList.setItems(selectedFiles);
         }
