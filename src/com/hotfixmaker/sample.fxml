@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -9,22 +10,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:controller="com.hotfixmaker.Controller" fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="421.0"
-            xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotfixmaker.Controller">
     <children>
-        <ListView fx:id="filesList" layoutX="9.0" layoutY="138.0" prefHeight="232.0" prefWidth="404.0"/>
+        <ListView fx:id="filesList" layoutX="9.0" layoutY="138.0" prefHeight="232.0" prefWidth="404.0" />
         <HBox layoutX="16.0" layoutY="14.0" prefHeight="31.0" prefWidth="397.0">
             <children>
                 <VBox prefHeight="31.0" prefWidth="96.0">
                     <children>
-                        <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="21.0" prefWidth="67.0"
-                               text="Name"/>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="21.0" prefWidth="67.0" text="Name" />
                     </children>
                 </VBox>
                 <VBox prefHeight="31.0" prefWidth="304.0">
                     <children>
-                        <TextField fx:id="nameField" prefHeight="31.0" prefWidth="297.0"/>
+                        <TextField fx:id="nameField" prefHeight="31.0" prefWidth="297.0" />
                     </children>
                 </VBox>
             </children>
@@ -33,41 +31,37 @@
             <children>
                 <VBox prefHeight="31.0" prefWidth="98.0">
                     <children>
-                        <Label alignment="TOP_LEFT" prefHeight="21.0" prefWidth="92.0" text="Target folder"/>
+                        <Label alignment="TOP_LEFT" prefHeight="21.0" prefWidth="92.0" text="Target folder" />
                     </children>
                 </VBox>
                 <VBox prefHeight="31.0" prefWidth="231.0">
                     <children>
-                        <TextField fx:id="targetFolderField" prefHeight="31.0" prefWidth="182.0"/>
+                        <TextField fx:id="targetFolderField" prefHeight="31.0" prefWidth="182.0" />
                     </children>
                 </VBox>
                 <VBox prefHeight="31.0" prefWidth="69.0">
                     <children>
-                        <Button fx:id="browseButton" onAction="#onClickBrowse" alignment="TOP_LEFT"
-                                mnemonicParsing="false" prefHeight="31.0" prefWidth="73.0" text="Browse"
-                                textAlignment="RIGHT" VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="browseButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickBrowse" prefHeight="31.0" prefWidth="73.0" text="Browse" textAlignment="RIGHT" VBox.vgrow="ALWAYS" />
                     </children>
                     <opaqueInsets>
-                        <Insets left="50.0"/>
+                        <Insets left="50.0" />
                     </opaqueInsets>
                 </VBox>
             </children>
         </HBox>
         <HBox layoutX="12.0" layoutY="78.0" prefHeight="18.0" prefWidth="319.0">
             <children>
-                <Label prefHeight="18.0" prefWidth="189.0" text="Default server app. folder "/>
+                <Label prefHeight="18.0" prefWidth="189.0" text="Default server app. folder " />
             </children>
         </HBox>
         <HBox layoutX="9.0" layoutY="105.0" prefHeight="31.0" prefWidth="404.0">
             <children>
-                <TextField fx:id="defaultFolderField" prefHeight="31.0" prefWidth="410.0"/>
+                <TextField fx:id="defaultFolderField" prefHeight="31.0" prefWidth="410.0" />
             </children>
         </HBox>
-        <Button fx:id="minusButton" onAction="#onClickMinus" layoutX="383.0" layoutY="375.0" mnemonicParsing="false"
-                prefHeight="31.0" prefWidth="33.0" text="-"/>
-        <Button fx:id="plusButton" onAction="#onClickPlus" layoutX="338.0" layoutY="375.0" mnemonicParsing="false"
-                prefHeight="31.0" prefWidth="33.0" text="+"/>
-        <Button fx:id="okButton" onAction="#onClickOk" layoutX="9.0" layoutY="413.0" mnemonicParsing="false"
-                prefHeight="31.0" prefWidth="58.0" text="OK"/>
+        <CheckBox fx:id="notRemoveTmpFolderCheckBox" layoutX="13.0" layoutY="382.0" mnemonicParsing="false" text="not remove tmp folder" />
+        <Button fx:id="minusButton" layoutX="383.0" layoutY="375.0" mnemonicParsing="false" onAction="#onClickMinus" prefHeight="31.0" prefWidth="33.0" text="-" />
+        <Button fx:id="plusButton" layoutX="338.0" layoutY="375.0" mnemonicParsing="false" onAction="#onClickPlus" prefHeight="31.0" prefWidth="33.0" text="+" />
+        <Button fx:id="okButton" layoutX="9.0" layoutY="413.0" mnemonicParsing="false" onAction="#onClickOk" prefHeight="31.0" prefWidth="58.0" text="OK" />
     </children>
 </AnchorPane>

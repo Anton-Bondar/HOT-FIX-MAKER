@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,8 @@ public class Controller implements Initializable {
     private ListView<SelectedFile> filesList;
     @FXML
     private TextField nameField;
+    @FXML
+    private CheckBox notRemoveTmpFolderCheckBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,7 +88,10 @@ public class Controller implements Initializable {
             FixPackageStructureCreator.process(targetFolderForClasses.getPath(), filesForPacking);
             ZipArchiveCreator.process(archiveName, targetFolderPath, rootArchiveFolder);
 
-            FileOperationHelper.removeTmpFolder(tempFolder);
+            if(!notRemoveTmpFolderCheckBox.isSelected()) {
+                LOGGER.shutdown();
+                FileOperationHelper.removeTmpFolder(tempFolder);
+            }
 
             ReportApplicationCreator.process(archiveFile);
 

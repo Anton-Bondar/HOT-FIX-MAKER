@@ -15,7 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hot Fix Maker");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root,421, 453));
-        primaryStage.getIcons().add(new Image("file:resources/icon.png"));
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/icon.png")));
         primaryStage.show();
     }
 

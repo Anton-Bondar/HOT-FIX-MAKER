@@ -28,24 +28,24 @@ public class FileOperationHelper {
         }
     }
 
-    public static void removeOldZipArchive(File archiveFile) throws IOException {
-        if (Files.exists(archiveFile.toPath())) {
-            Files.delete(archiveFile.toPath());
-            AlertHelper.create(HFM7.get(), Alert.AlertType.WARNING, "Warning").show();
-        }
-    }
-
-    public static File createDefaultFolder(String tmpFolder, String defaultFolderPath) {
-        File defaultFolder;
-
-        if (defaultFolderPath != null) {
-            defaultFolder = new File(tmpFolder, defaultFolderPath);
-        } else {
-            defaultFolder = new File(tmpFolder);
+        public static void removeOldZipArchive (File archiveFile) throws IOException {
+            if (Files.exists(archiveFile.toPath())) {
+                Files.delete(archiveFile.toPath());
+                AlertHelper.create(HFM7.get(), Alert.AlertType.WARNING, "Warning").show();
+            }
         }
 
-        defaultFolder.mkdirs();
+        public static File createDefaultFolder (String tmpFolder, String defaultFolderPath){
+            File defaultFolder;
 
-        return defaultFolder;
+            if (defaultFolderPath != null) {
+                defaultFolder = new File(tmpFolder, defaultFolderPath);
+            } else {
+                defaultFolder = new File(tmpFolder);
+            }
+
+            defaultFolder.mkdirs();
+
+            return defaultFolder;
+        }
     }
-}
