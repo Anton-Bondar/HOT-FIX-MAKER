@@ -28,7 +28,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.hotfixmaker.model.message.HFMMessage.*;
@@ -88,7 +87,7 @@ public class Controller implements Initializable {
             FixPackageStructureCreator.process(targetFolderForClasses.getPath(), filesForPacking);
             ZipArchiveCreator.process(archiveName, targetFolderPath, rootArchiveFolder);
 
-            if(!notRemoveTmpFolderCheckBox.isSelected()) {
+            if (!notRemoveTmpFolderCheckBox.isSelected()) {
                 LOGGER.shutdown();
                 FileOperationHelper.removeTmpFolder(tempFolder);
             }
