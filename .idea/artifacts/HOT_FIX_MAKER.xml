@@ -22,7 +22,6 @@
       <element id="archive" name="HOT_FIX_MAKER.jar">
         <element id="module-output" name="HOT-FIX-MAKER" />
       </element>
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/zip4j_1.3.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/log4j-1.2.17.jar" path-in-jar="/" />
     </root>
   </artifact>
