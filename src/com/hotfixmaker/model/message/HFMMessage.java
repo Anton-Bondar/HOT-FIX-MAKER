@@ -13,7 +13,10 @@ public enum HFMMessage {
 
     // Notification messages
     HFM7("[HFM7] Old zip archive was deleted"),
-    HFM8("[HFM8] Hot fix successfully created");
+    HFM8("[HFM8] Hot fix successfully created"),
+
+    //Confirmation messages
+    HFM9("[HFM9] Do you want to reset all fields to default?");
 
 
     private String message;

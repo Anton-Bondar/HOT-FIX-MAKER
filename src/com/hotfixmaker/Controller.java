@@ -14,10 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -27,10 +24,12 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import static com.hotfixmaker.model.message.HFMMessage.*;
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class Controller implements Initializable {
 
@@ -45,13 +44,13 @@ public class Controller implements Initializable {
     @FXML
     private AnchorPane mainPane;
     @FXML
+    private TextField nameField;
+    @FXML
     private TextField targetFolderField;
     @FXML
     private TextField defaultFolderField;
     @FXML
     private ListView<SelectedFile> filesList;
-    @FXML
-    private TextField nameField;
     @FXML
     private CheckBox notRemoveTmpFolderCheckBox;
 
@@ -146,5 +145,22 @@ public class Controller implements Initializable {
     private void onClickMinus() {
         SelectedFile selectedItem = filesList.getSelectionModel().getSelectedItem();
         selectedFiles.remove(selectedItem);
+    }
+
+    @FXML
+    public void onReset() {
+        Alert confirmation = AlertHelper.create(HFM9.get(), CONFIRMATION, "Reset fields");
+        Optional<ButtonType> option = confirmation.showAndWait();
+        if (option.get() == ButtonType.OK) {
+            resetFields();
+        }
+    }
+
+    private void resetFields() {
+        nameField.clear();
+        targetFolderField.clear();
+        defaultFolderField.setText(DEFAULT_FOLDER);
+        filesList.getItems().clear();
+        notRemoveTmpFolderCheckBox.setSelected(false);
     }
 }

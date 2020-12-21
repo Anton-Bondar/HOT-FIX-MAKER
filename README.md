@@ -1,4 +1,4 @@
-HOT FIX MAKER v 1.0
+HOT FIX MAKER v 2.0
 
  Purpose of the tool:
  
