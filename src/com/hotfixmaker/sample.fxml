@@ -59,7 +59,7 @@
                 <TextField fx:id="defaultFolderField" prefHeight="31.0" prefWidth="410.0" />
             </children>
         </HBox>
-        <CheckBox fx:id="notRemoveTmpFolderCheckBox" layoutX="13.0" layoutY="382.0" mnemonicParsing="false" text="not remove tmp folder" />
+        <CheckBox fx:id="notRemoveTmpFolderCheckBox" layoutX="13.0" layoutY="382.0" mnemonicParsing="false" prefWidth="158.0" text="not remove tmp folder" />
         <Button fx:id="minusButton" layoutX="379.0" layoutY="375.0" mnemonicParsing="false" onAction="#onClickMinus" prefHeight="31.0" prefWidth="33.0" text="-" />
         <Button fx:id="plusButton" layoutX="338.0" layoutY="375.0" mnemonicParsing="false" onAction="#onClickPlus" prefHeight="31.0" prefWidth="33.0" text="+" />
         <Button fx:id="okButton" layoutX="9.0" layoutY="413.0" mnemonicParsing="false" onAction="#onClickOk" prefHeight="31.0" prefWidth="58.0" text="OK" />

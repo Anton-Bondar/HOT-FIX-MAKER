@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HOT-FIX-MAKER:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HOT_FIX_MAKER_jar</output-path>
+    <root id="archive" name="HOT-FIX-MAKER.jar">
+      <element id="module-output" name="HOT-FIX-MAKER" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jackson-annotations-2.12.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jackson-core-2.12.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jackson-databind-2.12.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/log4j-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/zip4j-1.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/org/projectlombok/lombok/1.18.16/lombok-1.18.16.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

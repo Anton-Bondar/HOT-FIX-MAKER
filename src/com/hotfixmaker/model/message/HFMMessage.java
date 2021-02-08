@@ -16,8 +16,9 @@ public enum HFMMessage {
     HFM8("[HFM8] Hot fix successfully created"),
 
     //Confirmation messages
-    HFM9("[HFM9] Do you want to reset all fields to default?");
-
+    HFM9("[HFM9] Do you want to reset all fields to default?"),
+    HF10("[HFM10] Error during current session saving"),
+    HF11("[HFM11] Error during prev. session loading. Please try to remove session.json");
 
     private String message;
 

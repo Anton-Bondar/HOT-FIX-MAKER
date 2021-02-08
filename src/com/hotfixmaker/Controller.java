@@ -3,15 +3,19 @@ package com.hotfixmaker;
 import com.hotfixmaker.creator.FixPackageStructureCreator;
 import com.hotfixmaker.creator.ReportApplicationCreator;
 import com.hotfixmaker.creator.ZipArchiveCreator;
+import com.hotfixmaker.db.service.DBService;
 import com.hotfixmaker.helper.AlertHelper;
 import com.hotfixmaker.helper.FileOperationHelper;
 import com.hotfixmaker.helper.LoggerHelper;
 import com.hotfixmaker.helper.ValidationHelper;
 import com.hotfixmaker.model.SelectedFile;
+import com.hotfixmaker.model.dto.Session;
 import com.hotfixmaker.model.exception.HFMValidationException;
 import com.hotfixmaker.model.factory.FileCellFactory;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -22,6 +26,7 @@ import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +41,7 @@ public class Controller implements Initializable {
     private static final String DEFAULT_FOLDER = "\\applications\\NetCracker\\APP-INF\\classes";
 
     public static final String VALIDATION_ERROR = "Validation error";
+    public static final String EXECUTION_ERROR = "Execution error";
 
     private static Logger LOGGER = Logger.getLogger(Controller.class);
 
@@ -60,6 +66,12 @@ public class Controller implements Initializable {
         selectedFiles = FXCollections.observableArrayList();
         defaultFolderField.setText(DEFAULT_FOLDER);
         targetFolderField.setDisable(true);
+        try {
+            Session session = DBService.load();
+            if (session != null) loadPrevSessionOnView(session);
+        } catch (IOException e) {
+            AlertHelper.create(HF11.get(), Alert.AlertType.ERROR, EXECUTION_ERROR).showAndWait();
+        }
     }
 
     @FXML
@@ -86,19 +98,17 @@ public class Controller implements Initializable {
             FixPackageStructureCreator.process(targetFolderForClasses.getPath(), filesForPacking);
             ZipArchiveCreator.process(archiveName, targetFolderPath, rootArchiveFolder);
 
+            ReportApplicationCreator.process(archiveFile);
             if (!notRemoveTmpFolderCheckBox.isSelected()) {
                 LOGGER.shutdown();
                 FileOperationHelper.removeTmpFolder(tempFolder);
             }
-
-            ReportApplicationCreator.process(archiveFile);
-
         } catch (HFMValidationException e) {
             LOGGER.error(e.getMessage(), e);
             AlertHelper.create(e.getMessage(), Alert.AlertType.ERROR, VALIDATION_ERROR).showAndWait();
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-            AlertHelper.create(HFM1.get(), Alert.AlertType.ERROR, VALIDATION_ERROR).showAndWait();
+            AlertHelper.create(HFM1.get(), Alert.AlertType.ERROR, EXECUTION_ERROR).showAndWait();
         }
     }
 
@@ -156,11 +166,29 @@ public class Controller implements Initializable {
         }
     }
 
+    public Session getSessionBeanFromView() {
+        Session session = new Session();
+        session.setName(nameField.getText());
+        session.setTargetFolder(targetFolderField.getText());
+        session.setDefaultServerAppFolder(defaultFolderField.getText());
+        session.setFiles(filesList.getItems());
+        session.setNotRemoveTmpFolder(notRemoveTmpFolderCheckBox.isSelected());
+        return session;
+    }
+
     private void resetFields() {
         nameField.clear();
         targetFolderField.clear();
         defaultFolderField.setText(DEFAULT_FOLDER);
         filesList.getItems().clear();
         notRemoveTmpFolderCheckBox.setSelected(false);
+    }
+
+    private void loadPrevSessionOnView(Session session) {
+        nameField.setText(session.getName());
+        targetFolderField.setText(session.getTargetFolder());
+        defaultFolderField.setText(session.getDefaultServerAppFolder());
+        filesList.getItems().addAll(session.getFiles());
+        notRemoveTmpFolderCheckBox.setSelected(session.isNotRemoveTmpFolder());
     }
 }

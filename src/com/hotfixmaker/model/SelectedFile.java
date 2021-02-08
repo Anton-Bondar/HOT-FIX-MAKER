@@ -4,6 +4,16 @@ import java.io.File;
 
 public class SelectedFile {
 
+    public SelectedFile() {}
+
+    public SelectedFile(String name, String path,
+                        File file, String pathToCreation) {
+        this.name = name;
+        this.path = path;
+        this.file = file;
+        this.pathToCreation = pathToCreation;
+    }
+
     private String name;
 
     private String path;
